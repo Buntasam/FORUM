@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<div class="screen">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif, 40px;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            font-size: x-large;
+        }
+	.thread.hidden {
+    display: none;
+}
+
+        .header {
+            padding: 10px;
+            text-align: center;
+            font-size: x-large;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .menu {
+            width: 20%;
+            margin: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 8px;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .content {
+            width: 75%;
+            margin-left: 5%;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .menu h2, .content h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .menu form, .content form {
+            margin-bottom: 20px;
+        }
+        .menu label, .content label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .menu input[type="text"], .content input[type="text"], .content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #4a4f57;
+            border-color: transparent;
+            border-radius: 10px;
+        }
+        .menu button, .content button {
+            padding: 10px;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .menu button:hover, .content button:hover {
+            background-color: grey;
+        }
+        .thread {
+            margin-bottom: 20px;
+        }
+        .thread h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .thread p {
+            margin: 5px 0;
+        }
+
+.screen {
+  animation:colorPulse 5s infinite ease-in-out;
+  background-image:radial-gradient(#444, #111);
+  box-shadow:0 0 5vmin 1vmin #000 inset;
+  box-sizing:border-box;
+  font-family:'Fira Mono', monospace;
+  font-size:20px;
+  height:100vh;
+  overflow:hidden;
+  padding:10vmin;
+  width:100vw;
+}
+
+.screen:before {
+  animation:wave 10s infinite ease-in-out;
+  content:"";
+  height:20vh;
+  left:0;
+  opacity:.5;
+  position:absolute;
+  right:0;
+  z-index:1;
+}
+
+.screen:after {
+  background-image:linear-gradient(transparent, transparent 3px, #222);
+  background-size:4px 4px;
+  bottom:0;
+  content:"";
+  left:0;
+  pointer-events:none;
+  position:absolute;
+  right:0;
+  top:0;
+  z-index:2;
+}
+
+p:last-child:after {
+  animation:blink 1s infinite;
+  content:"_";
+}
+
+.button {
+color: green;
+}
+
+.input {
+color: green;
+}
+
+.messages.hidden {
+    display: none;
+}
+
+
+@keyframes colorPulse {
+  0%, 100% {
+    color:#0c0;
+  }
+  48%, 52% {
+    color:#090;
+  }
+  50% {
+    color:#060;
+  }
+}
+
+@keyframes wave {
+  0% {
+    box-shadow:0 -10vh 20vh #0c0;
+    top:-100vh;
+  }
+  48%, 52% {
+    box-shadow:0 -10vh 20vh #090;
+  }
+  50% {
+    box-shadow:0 -10vh 20vh #060;
+  }
+  100% {
+    box-shadow:0 -10vh 20vh #0c0;
+    top:200vh;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity:0;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Forum</h1>
+        <a class="button" href="login.html">Change Account / Disconnect</a>
+    </div>
+    <div class="container">
+        <div class="menu">
+            <h2>Créer une Conversation</h2>
+            <form id="create-thread-form">
+                <label for="thread-title">Titre</label>
+                <input alt="input" type="text" id="thread-title" name="title" required>
+                <label for="thread-visibility">Visibilité</label>
+                <select id="thread-visibility" name="visibility" required>
+                    <option value="public">Public</option>
+                    <option value="private">Privé</option>
+                </select>
+                <button type="submit">Créer</button>
+            </form>
+            <h2>Rejoindre une Conversation</h2>
+            <form id="join-thread-form">
+                <label for="join-thread-id">ID de la Conversation</label>
+                <input alt="input" type="text" id="join-thread-id" name="threadId" required>
+                <button class="button" type="submit">Rejoindre</button>
+            </form>
+        </div>
+	<div class="content">
+            <h2>Conversations</h2>
+            <div id="threads">
+                <!-- Les conversations seront affichées ici -->
+            </div>
+            <h2>Poster un Message</h2>
+            <form id="post-message-form">
+                <label for="message-thread">Choisir une Conversation</label>
+                <select id="message-thread" name="thread" required>
+                    <!-- Les options seront générées dynamiquement -->
+                </select>
+                <label for="message-content">Message</label>
+                <textarea id="message-content" name="content" rows="4" required></textarea>
+                <button id="button" type="submit">Poster</button>
+            </form>
+        </div>
+    </div>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const threads = [];
+    const createThreadForm = document.getElementById('create-thread-form');
+    const joinThreadForm = document.getElementById('join-thread-form');
+    const postMessageForm = document.getElementById('post-message-form');
+    const threadsContainer = document.getElementById('threads');
+    const messageThreadSelect = document.getElementById('message-thread');
+
+    createThreadForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const title = event.target.title.value;
+        const visibility = event.target.visibility.value;
+        const id = generateUniqueId();
+        const thread = { id, title, visibility, open: true, messages: [] };
+        threads.push(thread);
+        event.target.reset();
+        updateThreads();
+        updateThreadSelect();
+    });
+
+    joinThreadForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const threadId = event.target.threadId.value;
+        const thread = threads.find(t => t.id === threadId);
+        if (thread) {
+            alert(`Vous avez rejoint la conversation: ${thread.title}`);
+        } else {
+            alert('Conversation non trouvée');
+        }
+        event.target.reset();
+    });
+
+    postMessageForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const threadIndex = event.target.thread.value;
+        const content = event.target.content.value;
+        if (threads[threadIndex].open) {
+            threads[threadIndex].messages.push(content);
+            event.target.reset();
+            updateThreads();
+        } else {
+            alert('Cette conversation est fermée.');
+        }
+    });
+
+    function generateUniqueId() {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    function updateThreads() {
+        threadsContainer.innerHTML = '';
+        threads.forEach((thread, index) => {
+            const threadDiv = document.createElement('div');
+            threadDiv.className = 'thread';
+            const threadContentDiv = document.createElement('div');
+            threadContentDiv.classList.add('thread-content');
+
+            const toggleButton = document.createElement('button');
+            toggleButton.textContent = thread.open ? 'Fermer' : 'Ouvrir';
+            toggleButton.addEventListener('click', () => {
+                thread.open = !thread.open;
+                updateThreads();
+            });
+            threadDiv.appendChild(toggleButton);
+
+            const toggleMessagesButton = document.createElement('button');
+            toggleMessagesButton.textContent = 'Cacher/Afficher Messages';
+            toggleMessagesButton.classList.add('toggle-messages-button');
+            toggleMessagesButton.addEventListener('click', () => {
+                const messageContainer = threadContentDiv.querySelector('.messages');
+                messageContainer.classList.toggle('hidden');
+                toggleMessagesButton.textContent = messageContainer.classList.contains('hidden') ? 'Afficher Messages' : 'Cacher Messages';
+            });
+            threadDiv.appendChild(toggleMessagesButton);
+
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'Supprimer';
+            closeButton.addEventListener('click', () => {
+                threads.splice(index, 1);
+                updateThreads();
+            });
+            threadDiv.appendChild(closeButton);
+
+            const threadTitle = document.createElement('h3');
+            threadTitle.textContent = `${thread.title} (${thread.visibility}) - ID: ${thread.id}`;
+            threadContentDiv.appendChild(threadTitle);
+
+            const messageContainer = document.createElement('div');
+            messageContainer.classList.add('messages');
+            thread.messages.forEach(message => {
+                const messageP = document.createElement('p');
+                messageP.textContent = message;
+                messageContainer.appendChild(messageP);
+            });
+            threadContentDiv.appendChild(messageContainer);
+
+            threadDiv.appendChild(threadContentDiv);
+            threadsContainer.appendChild(threadDiv);
+        });
+    }
+
+    function updateThreadSelect() {
+        messageThreadSelect.innerHTML = '';
+        threads.forEach((thread, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${thread.title} (${thread.visibility})`;
+            messageThreadSelect.appendChild(option);
+        });
+    }
+});
+
+    </script>
+</body>
+</div>
+</html>
+
