@@ -14,7 +14,7 @@ const port = 3000
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/html/home.html')
+  res.sendFile(__dirname + '/public/html/createaccount.html')
 })
 
 const db = new DBmanager("localhost","root","")

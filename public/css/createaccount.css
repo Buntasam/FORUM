@@ -285,6 +285,24 @@ a.button:hover {
 	opacity: 0.8;
 }
 
+.button {
+	background: transparent;
+	border: 1px solid #00dd00;
+	clear: both;
+	color: #00dd00;
+	cursor: hand;
+	display: inline-block;
+	font-family: 'VT323', Courier;
+	font-size: 1em;
+	margin-bottom: 20px;
+	opacity: 0.25;
+	padding: 10px 100px;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+	z-index: 10;
+}
+
 .expandingArea { position: relative }
 	
 .scanline {
@@ -295,7 +313,7 @@ a.button:hover {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000dd00', endColorstr='#0000dd00',GradientType=0 );
 	display: block;
 	height: 20px;
-	opacity: 0.05;
+	opacity: 0.1;
 	position: absolute;
 		left: 0;
 		right: 0;
