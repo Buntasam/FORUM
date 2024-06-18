@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
-	<link rel="stylesheet" href="../css/createaccount.css">
-<head>
+	<link rel="stylesheet" href="createaccount.css">
+</head>
+<body>
 <div class="overlay"></div>
 <div class="scanline"></div>
 <div class="wrapper">
   <div class="content clearfix">
-
     <header class="site clearfix">
       <div class="col one">
-        <img src="../images/image.png" alt="591 Systems" width="740" height="729" id="logo-v" />
+        <img src="image.png" alt="591 Systems" width="740" height="729" id="logo-v" />
       </div>
       <div class="col two">
-
         <h4> VAULT <br /> <b>V</b>irtual <b>A</b>utonomous <b>U</b>ser-<b>L</b>ed <b>T</b>ransmissions (VAULT)</h4>
         <p>----------------------------------------</p>
         <p> VAULT TERMINAL </p>
@@ -24,25 +23,18 @@
         <p>- Server 2024 -</p>
       </div>
     </header>
-
     <nav class="site clear">
       <ul>
         <li><a href="login.html" title=""> Already Sign in ? </a></li>
       </ul>
     </nav>
-
     <p class="clear"><br /></p>
-
     <p>Welcome to the System Administrator Integrated Message System (SAIMS). This forum may contain graphical content that can be outrageous or dangerous. By accessing this forum and browsing the topics, you acknowledge and agree to the rules.</p><br />
-
-    <form>
-      <label>Username >></label><input type="text" /><br />
-      <label>Password >></label><input type="text" /><br />
-      <label>Confirm Password >></label><input type="text" /><br />
-<br>
-<br>
-
-<!--      <label>Confirm Password >></label><textarea id="text" rows="1"></textarea><br /><br /><br /> -->
+    <form action="http://localhost:3000/register" method="post">
+      <label>Username >></label><input type="text" name="username" required/><br />
+      <label>Password >></label><input type="password" name="password" required/><br />
+      <label>Confirm Password >></label><input type="password" name="confirm_password" required/><br />
+      <br><br>
       <input type="submit" value="Submit" />
       <a class="button" alt="" href="index.html">Cancel</a>
     </form>
