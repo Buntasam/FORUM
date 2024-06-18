@@ -303,6 +303,13 @@ a.button:hover {
 	z-index: 10;
 }
 
+.button:hover {
+	background: #00dd00;
+	color: #383838;
+	opacity: 0.8;
+}
+
+
 .expandingArea { position: relative }
 	
 .scanline {
