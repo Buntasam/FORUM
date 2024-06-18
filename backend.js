@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
+const DBmanager = require('./public/js/dbmanager.js')
 
 // socket.io setup
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
+const mysql = require("mysql");
 const io = new Server(server, {pingInterval: 2000, pingTimeout: 5000})
 
 const port = 3000
@@ -15,8 +17,11 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/html/home.html')
 })
 
+const db = new DBmanager("localhost","root","")
+
+db.insertUser("Meca","motdepassesolide","membre")
+
 const backendPlayers = {}
-const game = {}
 
 io.on('connection', (socket) => {
   socket.on('initgame', ({username}) => {
