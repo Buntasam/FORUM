@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register-form');
     const loginForm = document.getElementById('login-form');
@@ -196,3 +197,4 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.screen').classList.remove('logged-in');
     });
 });
+*/
