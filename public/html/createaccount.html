@@ -39,15 +39,21 @@
       <label>Username >></label><input type="text" /><br />
       <label>Password >></label><input type="password" id="password" /><br />
       <label>Confirm Password >></label><input type="password" id="confirm-password" /><br />
+
+      <img id="image" src="../images/image1.png" width="200">
 <br>
-<input type="checkbox" id="toggle-password"> Show Passwords<br /><br />
+
+<input class="checkbox" type="checkbox" id="toggle-password"> Show Passwords<br /><br />
 
 <br>
       <input type="submit" value="Submit" />
       <a class="button" alt="" href="index.html">Cancel</a>
     </form>
   </div>
+  
 </div>
+
+
 
 <script>
   document.getElementById('toggle-password').addEventListener('change', function() {
@@ -61,6 +67,15 @@
       confirmPasswordField.type = 'password';
     }
   });
+
+  document.getElementById('toggle-password').addEventListener('change', function() {
+    var image = document.getElementById('image');
+    if (this.checked) {
+        image.src = '../images/image2.png';
+    } else {
+        image.src = '../images/image1.png'; 
+    }
+});
 </script>
 
 </body>

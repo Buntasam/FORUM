@@ -316,3 +316,19 @@ a.button:hover {
 .upper { text-transform: uppercase; }
 
 
+input[type="checkbox"]::-ms-check {
+    display: none;
+}
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    height: 25px;
+    width: 25px;
+    
+    border: 1px solid silver;
+}
+
+input[type="checkbox"]:checked {
+    background-color: rgb(36, 211, 36);
+}
