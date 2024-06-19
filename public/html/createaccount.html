@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
-	<link rel="stylesheet" href="../css/createaccount.css">
-<head>
+    <link rel="stylesheet" href="../css/createaccount.css">
+</head>
+<body>
 <div class="overlay"></div>
 <div class="scanline"></div>
 <div class="wrapper">
@@ -16,7 +17,6 @@
         <img src="../images/image.png" alt="591 Systems" width="740" height="729" id="logo-v" />
       </div>
       <div class="col two">
-
         <h4> VAULT <br /> <b>V</b>irtual <b>A</b>utonomous <b>U</b>ser-<b>L</b>ed <b>T</b>ransmissions (VAULT)</h4>
         <p>----------------------------------------</p>
         <p> VAULT TERMINAL </p>
@@ -35,16 +35,33 @@
 
     <p>Welcome to the System Administrator Integrated Message System (SAIMS). This forum may contain graphical content that can be outrageous or dangerous. By accessing this forum and browsing the topics, you acknowledge and agree to the rules.</p><br />
 
-    <form id="createAccount">
-      <label id="username">Username >></label><input type="text" /><br />
-      <label>Password >></label><input type="password" /><br />
-      <label id="password">Confirm Password >></label><input type="password" /><br />
+    <form>
+      <label>Username >></label><input type="text" /><br />
+      <label>Password >></label><input type="password" id="password" /><br />
+      <label>Confirm Password >></label><input type="password" id="confirm-password" /><br />
 <br>
-<br>
+<input type="checkbox" id="toggle-password"> Show Passwords<br /><br />
 
-      <button id="submit" class="button" type="submit" value="Submit">SUBMIT</button>
+<br>
+      <input type="submit" value="Submit" />
+      <a class="button" alt="" href="index.html">Cancel</a>
     </form>
   </div>
 </div>
+
+<script>
+  document.getElementById('toggle-password').addEventListener('change', function() {
+    var passwordField = document.getElementById('password');
+    var confirmPasswordField = document.getElementById('confirm-password');
+    if (this.checked) {
+      passwordField.type = 'text';
+      confirmPasswordField.type = 'text';
+    } else {
+      passwordField.type = 'password';
+      confirmPasswordField.type = 'password';
+    }
+  });
+</script>
+
 </body>
 </html>

@@ -232,6 +232,20 @@ textarea {
 	width: 80%;
 	z-index: 10
 }
+
+input[type=password],
+textarea {
+	background: transparent;
+	border: transparent;
+	color: #00dd00;
+	display: block;
+	float: left;
+	font-family: 'VT323', Courier;
+	font-size: 1.2em;
+	position: relative;
+	width: 80%;
+	z-index: 10
+}
 /*
 textarea {
 	margin-bottom: 20px

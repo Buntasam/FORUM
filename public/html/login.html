@@ -32,6 +32,7 @@
       <ul>
         <li><a href="home.html" title="">Return Home</a></li>
         <li><a href="createaccount.html" title="">Create Account</a></li>
+
       </ul>
     </nav>
 
@@ -43,8 +44,11 @@
 
     <form>
       <label>Username >></label><input type="text" /><br />
-      <label>Password >></label><input type="text" /><br />
+      <label>Password >></label><input type="password" id="password" /><br />
+
 <br>
+<input type="checkbox" id="toggle-password"> Show Passwords<br /><br />
+
 <br>
 
       <input type="submit" value="Submit" />
@@ -52,5 +56,21 @@
     </form>
   </div>
 </div>
+
+<script>
+  document.getElementById('toggle-password').addEventListener('change', function() {
+    var passwordField = document.getElementById('password');
+    var confirmPasswordField = document.getElementById('confirm-password');
+    if (this.checked) {
+      passwordField.type = 'text';
+      confirmPasswordField.type = 'text';
+    } else {
+      passwordField.type = 'password';
+      confirmPasswordField.type = 'password';
+    }
+  });
+</script>
+
+
 </body>
 </html>
