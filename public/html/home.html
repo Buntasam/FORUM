@@ -6,12 +6,21 @@
     <link rel="stylesheet" href="../css/home.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Forum</title>
 </head>
+
 <body>
     <div class="header">
-        <h1>Forum</h1>
-        <a class="button1" href="login.html">Change Account / Disconnect</a>
+        <img src="../images/image.png" width="140" id="logo-v" />        
+        <!-- <a class="button1" href="login.html">Change Account / Disconnect</a> -->
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="#"> Disconnect </a>
+                <a href="#"> Change account</a>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="menu">
@@ -27,7 +36,7 @@
                 </select>
                 <br>
                 <br>
-                <button class="button1" type="submit">Créer</button>
+                <button class="button1" type="submit">Create</button>
             </form>
             <h2>Join Channel</h2>
             <form id="join-thread-form">
@@ -50,7 +59,7 @@
                 <br>
                 <label for="message-content">Write a message</label>
                 <textarea id="message-content" name="content" rows="4" required></textarea>
-                <button class="button1" type="submit">Poster</button>
+                <button class="button1" type="submit">Post</button>
             </form>
         </div>
     </div>
