@@ -1,5 +1,22 @@
 const mysql = require('mysql');
 const {query} = require("express");
+const bcrypt = require('bcrypt');
+
+let defaultHashedPw;
+
+const users = []
+
+// (async () => {
+//     const salt = await bcrypt.genSalt(10);
+//
+//     defaultHashedPw = await bcrypt.hash("password", salt);
+//
+//     users.push({
+//         id: 1,
+//         username: "admin",
+//         password: defaultHashedPw,
+//     })
+// })();
 
 class DBmanager {
     con;

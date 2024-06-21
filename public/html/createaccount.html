@@ -35,9 +35,9 @@
 
     <p>Welcome to the System Administrator Integrated Message System (SAIMS). This forum may contain graphical content that can be outrageous or dangerous. By accessing this forum and browsing the topics, you acknowledge and agree to the rules.</p><br />
 
-    <form>
-      <label>Username >></label><input type="text" /><br />
-      <label>Password >></label><input type="password" id="password" /><br />
+    <form id="createAccount">
+      <label>Username >></label><input type="text" id="username"/><br />
+      <label>Password >></label><input type="password" id="password"/><br />
       <label>Confirm Password >></label><input type="password" id="confirm-password" /><br />
 
       <img id="image" src="../images/image1.png" width="200">
@@ -46,8 +46,7 @@
 <input class="checkbox" type="checkbox" id="toggle-password"> Show Passwords<br /><br />
 
 <br>
-      <input type="submit" value="Submit" />
-      <a class="button" alt="" href="index.html">Cancel</a>
+        <button type="submit" value="Submit" >Submit </button>
     </form>
   </div>
   
@@ -77,6 +76,8 @@
     }
 });
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js" integrity="sha512-kVlGhj2qFy+KBCFuvjBJTGUMxbdqJKs4yK2jh0e0VPhWUPiPC87bzm4THmaaIee3Oj7j6sDpTTgm2EPPiESqBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+<script src="../js/eventListener.js"></script>
 </body>
 </html>
