@@ -71,6 +71,7 @@ body {
 #alreadyexist {
 	font-size: 1.7em;
 	visibility: hidden;
+	display: none;
 	color: red;
 }
 
@@ -90,8 +91,6 @@ a {
 a:hover {
 	color: green;
 }
-
-
 
 p { 
 	line-height: 100%;

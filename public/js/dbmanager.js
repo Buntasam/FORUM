@@ -41,18 +41,19 @@ class DBmanager {
             console.log("User already exists");
             return Promise.resolve("User already exists");
         }
-        return new Promise((resolve, reject) => {
-           this.con.query(query, [username, password, role], (err, results) => {
-                if(err) {
-                    console.log("Error inserting user", err);
+         return new Promise(async (resolve, reject) => {
+             const hasdedPw = await bcrypt.hash(password, 10);
+             this.con.query(query, [username, hasdedPw, role], (err, results) => {
+                 if (err) {
+                     console.log("Error inserting user", err);
                      reject("Error inserting user");
-                }else {
-                    console.log("User inserted with ID: ", results.insertId);
-                    resolve("User inserted");
-                }
-                resolve(results);
-           });
-        });
+                 } else {
+                     console.log("User inserted with ID: ", results.insertId);
+                     resolve("User inserted");
+                 }
+                 resolve(results);
+             });
+         });
     }
 
     async userExists(username) {
@@ -67,6 +68,8 @@ class DBmanager {
             });
         });
     }
+
+
 }
 
 module.exports = DBmanager;

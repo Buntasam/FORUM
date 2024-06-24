@@ -11,5 +11,6 @@ document.querySelector('#createAccount').addEventListener('submit', (event) => {
 socket.on('createUserResponse', (message) => {
     if(message === "User already exists") {
         document.getElementById('alreadyexist').style.visibility = 'visible';
+        document.getElementById('alreadyexist').style.display = 'block';
     }
 });

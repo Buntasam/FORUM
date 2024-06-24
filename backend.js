@@ -21,8 +21,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-const users =[{id: 1, username: "meca", password: "azerty"},
-  {id: 2, username: "bunta", password: "querty",}]
+const users = []
 
 app.use(express.static('public'));
 app.use(session({
@@ -67,14 +66,6 @@ app.get('/login',redirectHome ,(req, res) => {
   res.sendFile(__dirname + '/public/html/login.html')
 });
 
-app.post('/register',redirectHome , (req, res) => {
-  res.sendFile(__dirname + '/public/html/createaccount.html')
-});
-
-app.post('/login',redirectHome , (req, res) => {
-  res.sendFile(__dirname + '/public/html/login.html')
-});
-
 app.get('/home',redirectLogin , (req, res) => {
   res.sendFile(__dirname + '/public/html/home.html')
 });
@@ -82,6 +73,20 @@ app.get('/home',redirectLogin , (req, res) => {
 app.get('/logout',redirectLogin , (req, res) => {
 
 });
+
+app.post('/register',redirectHome , (req, res) => {
+  res.sendFile(__dirname + '/public/html/createaccount.html')
+});
+
+app.post('/login',redirectHome , (req, res) => {
+  if(req.body.username && req.body.password) {
+    const user = db.userExists(req.body.username);
+
+  }
+
+  res.sendFile(__dirname + '/public/html/login.html')
+});
+
 
 const db = new DBmanager("localhost","root","")
 
