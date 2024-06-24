@@ -52,15 +52,6 @@ const redirectHome = (req, res, next) => {
   }
 };
 
-const redirectRegister = (req, res, next) => {
-  if (!req.session.userId) {
-    res.redirect('/register');
-  } else {
-    next();
-  }
-}
-
-
 
 app.get('/', redirectLogin, (req, res) => {
   const { userId } = req.session;
@@ -101,15 +92,9 @@ io.on('connection', (socket) => {
     db.insertUser(username, password, "membre");
   });
 
-  socket.on('registerPage', () => {
-    redirect('/register')
-  });
-
   socket.on('disconnect', reason => {
     console.log(`Socket disconnected: ${reason}`);
-  })
-
-
+  });
 
 });
 
