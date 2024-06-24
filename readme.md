@@ -1,6 +1,6 @@
-VAULT 101
+# VAULT 101
 
-VAULT-TERMINAL
+# VAULT-TERMINAL
 Virtual Autonomous User-Led Transmissions (VAULT)
 
 ------------------
@@ -74,4 +74,4 @@ Before using make sure you follow all the installations and start steps.
 # Contact / Issue
 
     If you have any problems or request, create an issue on Github or contact us.
-    
+
