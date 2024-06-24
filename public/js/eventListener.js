@@ -7,3 +7,9 @@ document.querySelector('#createAccount').addEventListener('submit', (event) => {
          password: document.querySelector('#password').value,
      })
  })
+
+socket.on('createUserResponse', (message) => {
+    if(message === "User already exists") {
+        document.getElementById('alreadyexist').style.visibility = 'visible';
+    }
+});

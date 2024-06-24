@@ -39,14 +39,19 @@ class DBmanager {
         const query = 'INSERT INTO users (username,password,role) VALUES (?,?,?)';
         if(await this.userExists(username)) {
             console.log("User already exists");
-            return;
+            return Promise.resolve("User already exists");
         }
-        this.con.query(query, [username, password, role], (err, results) => {
-            if (err) {
-                console.log("Error inserting user", err);
-                return;
-            }
-            console.log('User created with ID', results.insertId);
+        return new Promise((resolve, reject) => {
+           this.con.query(query, [username, password, role], (err, results) => {
+                if(err) {
+                    console.log("Error inserting user", err);
+                     reject("Error inserting user");
+                }else {
+                    console.log("User inserted with ID: ", results.insertId);
+                    resolve("User inserted");
+                }
+                resolve(results);
+           });
         });
     }
 

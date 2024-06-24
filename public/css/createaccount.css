@@ -68,6 +68,12 @@ body {
 	padding: 0;
 }
 
+#alreadyexist {
+	font-size: 1.7em;
+	visibility: hidden;
+	color: red;
+}
+
 h1, h2, h3 h4, h5, h6 { 
 	font-weight: normal;
 	margin: 0;
@@ -84,6 +90,8 @@ a {
 a:hover {
 	color: green;
 }
+
+
 
 p { 
 	line-height: 100%;
@@ -240,7 +248,7 @@ textarea {
 	font-family: 'VT323', Courier;
 	font-size: 1.2em;
 	position: relative;
-	width: 80%;
+	width: 70%;
 	z-index: 10
 }
 

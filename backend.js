@@ -89,7 +89,7 @@ const backendPlayers = {}
 
 io.on('connection', (socket) => {
   socket.on('createUser', ({username, password}) => {
-    db.insertUser(username, password, "membre");
+    db.insertUser(username, password, "membre").then(message => {socket.emit('createUserResponse', message) }).catch(err => {console.log(err)})
   });
 
   socket.on('disconnect', reason => {
