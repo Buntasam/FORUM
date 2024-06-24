@@ -13,13 +13,13 @@ Before using make sure you follow all the installations and start steps.
 
 # Installation
 
-    UBUNTU :
+# UBUNTU :
 
     #~ git clone https://github.com/Buntasam/FORUM
     #~ apt install nodejs
     #~ apt install npm
 
-    Dependencies :
+# Dependencies :
 
     #~ npm install express
     #~ npm install mysql2
@@ -34,12 +34,12 @@ Before using make sure you follow all the installations and start steps.
 
     ---------mysqldb-----------
 
-    WINDOWS :
+# WINDOWS :
 
     #~ git clone https://github.com/Buntasam/FORUM
     #~ install https://nodejs.org/en/download/prebuilt-installer
     
-    Dependencies :
+# Dependencies :
     
     #~ npm install express
     #~ npm install mysql2
