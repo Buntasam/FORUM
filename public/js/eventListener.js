@@ -7,3 +7,8 @@ document.querySelector('#createAccount').addEventListener('submit', (event) => {
          password: document.querySelector('#password').value,
      })
  })
+
+document.querySelector('#buttoncreateaccount').addEventListener('submit', (event) => {
+    event.preventDefault()
+    socket.emit('registerPage')
+})

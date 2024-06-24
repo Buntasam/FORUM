@@ -6,18 +6,6 @@ let defaultHashedPw;
 
 const users = []
 
-// (async () => {
-//     const salt = await bcrypt.genSalt(10);
-//
-//     defaultHashedPw = await bcrypt.hash("password", salt);
-//
-//     users.push({
-//         id: 1,
-//         username: "admin",
-//         password: defaultHashedPw,
-//     })
-// })();
-
 class DBmanager {
     con;
     constructor(host, user, password) {
@@ -49,12 +37,29 @@ class DBmanager {
 
     async insertUser(username, password, role) {
         const query = 'INSERT INTO users (username,password,role) VALUES (?,?,?)';
+        if(await this.userExists(username)) {
+            console.log("User already exists");
+            return;
+        }
         this.con.query(query, [username, password, role], (err, results) => {
             if (err) {
                 console.log("Error inserting user", err);
                 return;
             }
             console.log('User created with ID', results.insertId);
+        });
+    }
+
+    async userExists(username) {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT * FROM users WHERE username = ?';
+            this.con.query(query, [username], (err, results) => {
+                if(err) {
+                    reject(err);
+                    return;
+                }
+                resolve(results.length > 0);
+            });
         });
     }
 }
