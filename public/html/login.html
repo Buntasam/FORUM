@@ -42,9 +42,9 @@
     <p class="clear"><br /></p>
 
 
-    <form>
-      <label>Username >></label><input type="text" /><br />
-      <label>Password >></label><input type="password" id="password" /><br />
+    <form method="post" action="/login">
+      <label>Username >></label><input type="text" name="username" required/><br />
+      <label>Password >></label><input type="password" id="password" name="password" required/><br />
 
       <br>
       <img id="image" src="../images/image1.png" width="200">

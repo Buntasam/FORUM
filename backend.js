@@ -10,7 +10,6 @@ const { Server } = require('socket.io')
 const mysql = require("mysql");
 const session = require('express-session')
 const bodyParser = require("body-parser");
-const {redirect} = require("express/lib/response");
 const io = new Server(server, {pingInterval: 2000, pingTimeout: 5000})
 
 const port = 3000
@@ -79,12 +78,15 @@ app.post('/register',redirectHome , (req, res) => {
 });
 
 app.post('/login',redirectHome , (req, res) => {
-  if(req.body.username && req.body.password) {
-    const user = db.userExists(req.body.username);
-
-  }
-
-  res.sendFile(__dirname + '/public/html/login.html')
+  const {username, password} = req.body;
+    db.passwordMatches(username, password).then(async (matches) => {
+      if(matches) {
+        console.log(req.session.userId)
+        req.session.userId = username;
+        return res.redirect('/home');
+      }
+      res.redirect('/login');
+    });
 });
 
 

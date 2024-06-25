@@ -69,6 +69,24 @@ class DBmanager {
         });
     }
 
+    async passwordMatches(username, password) {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT password FROM users WHERE username = ?';
+            this.con.query(query, [username], async (err, results) => {
+                if(err) {
+                    reject(err);
+                    return;
+                }
+                if(results.length === 0) {
+                    resolve(false);
+                    return;
+                }
+                const hashedPw = results[0].password;
+                resolve(await bcrypt.compare(password, hashedPw));
+            });
+        });
+    }
+
 
 }
 
