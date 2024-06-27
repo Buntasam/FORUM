@@ -36,13 +36,13 @@
                 </select>
                 <br>
                 <br>
-                <button class="button1" type="submit">Create</button>
+                <button class="button2" type="submit">Create</button>
             </form>
             <h2>Join Channel</h2>
             <form id="join-thread-form">
                 <label for="join-thread-id">Channel ID</label>
                 <input alt="input" type="text" id="join-thread-id" name="threadId" required>
-                <button class="button1" type="submit">Join</button>
+                <button class="button2" type="submit">Join</button>
             </form>
         </div>
 	<div class="content">
@@ -57,13 +57,16 @@
                 </select>
                 <br>
                 <br>
-                <label for="message-content">Write a message</label>
-                <textarea id="message-content" name="content" rows="4" required></textarea>
+                <label for="message-content"> Write a message </label>
+                <textarea id="message-content" name="content" rows="4" maxlength="500" required></textarea>
+                <div id="char-count">0/500</div> <!-- Compteur de caractères -->
+                <br>
                 <button class="button1" type="submit">Post</button>
             </form>
         </div>
     </div>
     <script>
+
 document.addEventListener('DOMContentLoaded', () => {
     const threads = [];
     const createThreadForm = document.getElementById('create-thread-form');
@@ -123,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const toggleButton = document.createElement('button');
             toggleButton.textContent = thread.open ? 'Fermer' : 'Ouvrir';
+            toggleButton.classList.add('toggle-messages-button');
             toggleButton.addEventListener('click', () => {
                 thread.open = !thread.open;
                 updateThreads();
@@ -141,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const closeButton = document.createElement('button');
             closeButton.textContent = 'Supprimer';
+            closeButton.classList.add('toggle-messages-button');
             closeButton.addEventListener('click', () => {
                 threads.splice(index, 1);
                 updateThreads();
@@ -175,6 +180,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+        const textarea = document.getElementById('message-content');
+        const charCount = document.getElementById('char-count');
+        
+        textarea.addEventListener('input', function() {
+            const currentLength = textarea.value.length;
+            charCount.textContent = `${currentLength}/500 characters`;
+        });
+    });
 
     </script>
 

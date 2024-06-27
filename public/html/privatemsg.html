@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<div class="screen">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/privatemsg.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Forum</title>
+</head>
+
+<body>
+    <div class="header">
+        <img src="../images/image.png" width="140" id="logo-v" />        
+        <!-- <a class="button1" href="login.html">Change Account / Disconnect</a> -->
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="#"> Disconnect </a>
+                <a href="#"> Change account</a>
+            </div>
+        </div>
+    </div>
+    <div class="menu">
+    <div class="container">
+        <input class="text" alt="input" type="text" id="pseudoInput" placeholder="Entrez le pseudo">
+        <button class="button1" onclick="createConversation()">Create Conversation</button>
+    </div>
+	<div class="content">
+            <h2> Conversations </h2>
+        <div class="conversation-block" onclick="openPopup()">
+            <h3>Conversation 1</h3>
+        </div>
+
+        <div class="conversation-block" onclick="openPopup()">
+            <h3>Conversation 2</h3>
+        </div>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <h2> [USERNAME] </h2>
+                <p>Under no circumstances should you ever give out your password.</p>
+                <div id="messageDisplayArea"></div>
+                    <input class="text2" id="messageInput" placeholder="Tapez votre message ici">
+                    <button class="button1" onclick="sendMessage()">Envoyer</button>
+            </div>
+        </div>
+
+        <script>
+        function createConversation() {
+        const pseudo = document.getElementById("pseudoInput").value;
+        if(pseudo) {
+            alert("Créer une conversation avec " + pseudo);
+            // Ici, vous pouvez ajouter le code pour envoyer le pseudo au serveur et créer la conversation
+            } else {
+            alert("Veuillez entrer un pseudo.");
+            }
+        }
+
+        function openPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById("messageInput");
+            const messageDisplayArea = document.getElementById("messageDisplayArea");
+            const message = messageInput.value;
+            if (message) {
+                // Ajouter le message à la zone d'affichage
+                const messageElement = document.createElement("p");
+                messageElement.textContent = message;
+                messageDisplayArea.appendChild(messageElement);
+                // Vider le champ de saisie
+                messageInput.value = "";
+                // Ici, vous pouvez également ajouter le code pour envoyer le message au serveur
+            } else {
+                alert("Veuillez entrer un message.");
+            }
+        }
+        </script>
+
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="../js/eventListener.js"></script>
+    <script src="/js/dbmanager.js"></script>
+</body>
+</div>
+</html>
+

@@ -78,7 +78,7 @@ display: none;
     width: 90vw;
 }
 .menu {
-    width: 20%;
+    width: 100%;
     margin: center;
     align-items: center;
     padding: 2%;
@@ -89,12 +89,14 @@ display: none;
 }
 
 .content {
-    width: 75%;
+    width: 90%;
     padding: 20px;
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
     border-color: #00dd00;
     border: 5px solid green;
     margin-left: 2%;
+    margin: center;
+    justify-content: center;
 }
 
 .menu h2, .content h2 {
@@ -109,14 +111,15 @@ display: none;
     margin-bottom: 5px;
 }
 .menu input[type="text"], .content input[type="text"], .content textarea {
-    width: 90%;
+    width: 20%;
     padding: 10px;
     margin-bottom: 10px;
     background-color: #4a4f57;
     border-color: transparent;
     border-radius: 10px;
     color: greenyellow;
-
+    margin-right: 20px;
+    margin-left: 10px;
 }
 
 
@@ -245,28 +248,26 @@ opacity:0;
 	text-decoration: none;
 	text-transform: uppercase;
 	z-index: 100;
+    align-items: center;
 }
 
-    .button2 {
-        background: transparent;
-        border: 1px solid #00dd00;
-        clear: both;
-        color: #00dd00;
-        cursor: hand;
-        display: inline-block;
-        font-family: 'VT323', Courier;
-        font-size: 1em;
-        margin: 0 auto;
-        opacity: 0.25;
-        padding: 2% 30%;
-        position: relative;
-        text-decoration: none;
-        text-transform: uppercase;
-        z-index: 100;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
+.button2 {
+	background: transparent;
+	border: 1px solid #00dd00;
+	clear: both;
+	color: #00dd00;
+	cursor: hand;
+	display: inline-block;
+	font-family: 'VT323', Courier;
+	font-size: 1em;
+	margin-bottom: 20px;
+	opacity: 0.25;
+	padding: 2% 30% 0% 30%;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+	z-index: 100;
+}
 
 input[type=submit]:hover,
 a.button:hover {
@@ -375,74 +376,60 @@ a.button:hover {
     -ms-overflow-style: none;
   }
 
-  .thread {
-    padding: 10px;
-    margin-bottom: 10px;
-    overflow: hidden; /* Ensures content does not overflow the div */
-    max-width: 100%; /* Ensure it fits within the container */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
-
-.thread-content {
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    overflow: auto; /* Allows scrolling for overflow content */
-    box-sizing: border-box;
-}
-
-.thread-content h3 {
-    margin-top: 0;
-}
-
-.messages {
-    white-space: pre-wrap; /* Preserve whitespace and handle wrapping */
-    word-wrap: break-word; /* Break long words */
-    max-width: 100%; /* Ensure it doesn’t overflow the container */
-    overflow-wrap: break-word; /* Ensure long words break and wrap */
-}
-
-.hidden {
+  .popup {
     display: none;
-}
-
-#char-count {
-    font-size: 14px;
-    color: #555;
-}
-
-.button, .select, textarea {
-    width: 100%; /* Ensures form elements fit within their container */
-    box-sizing: border-box;
-}
-
-.thread div button {
-    margin-right: 10px;
-}
-
-.toggle-messages-button {
-    background: transparent;
-    border: 1px solid #00dd00;
-    clear: both;
-    color: #00ff00;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'VT323', Courier;
-    font-size: xx-large;
-    margin: 0 auto;
-    opacity: 0.25;
-    padding: 2% 30%;
-    position: relative;
-    text-decoration: none;
-    text-transform: uppercase;
-    z-index: 100;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
     width: 100%;
-    box-sizing: border-box;
-    height: 30px;
-    text-align: center;
-    overflow: hidden;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 80%;
+    background-color: #000;
+    z-index: 2000;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.conversation-block {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.text2 {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #4a4f57;
+    border-color: transparent;
+    border-radius: 10px;
+    color: greenyellow;
+    margin-right: 20px;
+    margin-left: 10px;
 }
