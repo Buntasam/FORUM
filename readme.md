@@ -32,8 +32,8 @@ Before using make sure you follow all the installations and start steps.
     #~ chmod +x xampp-linux-x64-7.4.29-1-installer.run
     #~ sudo ./xampp-linux-x64-7.4.29-1-installer.run
 
-    ---------mysqldb-----------
-
+   It is necessary to rebuild a database like the one provided on the discord at the start of the project.
+   
 # WINDOWS :
 
     #~ git clone https://github.com/Buntasam/FORUM
@@ -51,7 +51,7 @@ Before using make sure you follow all the installations and start steps.
     #~ Download latest version of Xamp
     https://www.apachefriends.org/fr/download.html
 
-        ---------mysqldb-----------
+   It is necessary to rebuild a database like the one provided on the discord at the start of the project.
 
 
 # Start 
